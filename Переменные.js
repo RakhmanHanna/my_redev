@@ -201,7 +201,39 @@ switch (num) {
         console.log('Нет совпадений');
 }
 
+//
+function transform(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        switch (arr[1]) {
+            case (arr[i] === '--discard-next'):
+                let result = arr.slice(0, i) + "," + arr.slice(i + 2);
+                let newArray = result.split(',');
+                return newArray;
+                break;
+            case (arr[i] === '--discard-prev'):
+                let result = arr.slice(0, i - 1) + "," + arr.slice(i + 1);
+                let newArray = result.split(',');
+                return newArray;
+                break;
+            case (arr[i] === '--double-next'):
+                let result = arr.slice(0, i) + "," + arr[i + 1] + "," + arr.slice(i + 1);
+                let newArray = result.split(',');
+                return newArray;
+                break;
+            case (arr[i] === '--double-prev'):
+                let result = arr.slice(0, i) + "," + arr[i - 1] + "," + arr.slice(i + 1);
+                let newArray = result.split(',');
+                return newArray;
+                break;
+        }
+    }
+}
+console.log(transform([1, 3, '--double-next', 4])); // => [1, 2, 3, 4, 4, 5]
+console.log(transform([1, 3, '--discard-prev', 4]));
 
+
+
+//
 const checkAge(age) = () => (age > 18) ? true : confirm('Родители разрешили?');
 
 function min(a,b) {
@@ -262,3 +294,37 @@ function findNextSquare(sq){
 }
 
 findNextSquare(625);
+
+
+//
+
+
+
+//
+function checkAnagram(arr) {
+    if (!arr || arr.length <= 1) return false;
+
+    let first_word = arr[0].split("").sort().join("");
+    
+    for (let i = 1; i < arr.length; i++) {
+      if (arr[i].split("").sort().join("") != first_word) {
+        return false; 
+      }
+    }
+    return true;
+  };
+console.log(checkAnagram(["кот", "ток", "кто"]));
+
+//
+    let str = '';
+    let arr = [].filter.call(str, firstChar);
+    function firstChar(value, index, arr) {
+        if (index == 0)  {
+        return true;  }
+        else {
+        return arr[index - 1] === " ";
+    }
+}
+    let arr = [].filter.call(str, firstChar);
+
+console.log(firstChar(['Matt', 'Ann', 'Dmitry', 'Max']));
